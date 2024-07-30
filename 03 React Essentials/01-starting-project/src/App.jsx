@@ -1,6 +1,6 @@
 import reactImg from './assets/react-core-concepts.png';
-import componentsImg from './assets/react-core-concepts.png';
-
+import componentsImg from './assets/components.png';
+import {CORE_CONCEPTS} from './data.js';
 
 const reactDescriptions = ['Fundamental', 'Crucial', 'Core'];
 
@@ -9,29 +9,29 @@ function genRandomInt(max) {
 }
 
 function Header() {
-    const descriptions = reactDescriptions[genRandomInt(2)];
+    const description = reactDescriptions[genRandomInt(2)]
+
     return (
         <header>
             <img src={reactImg} alt="Stylized atom"/>
             <h1>React Essentials</h1>
             <p>
-                {descriptions} React concepts you will need for almost any app you are
+                {description} React concepts you will need for almost any app you are
                 going to build!
             </p>
         </header>
     );
 }
 
-function CoreConcept() {
+function CoreConcept(props) {
     return (
         <li>
-            <img src="..." alt="..."/>
-            <h3>TITLE</h3>
-            <P>DESCRIPTION</P>
+            <img src={props.image} alt={props.title}/>
+            <h3>{props.title}</h3>
+            <p>{props.description}</p>
         </li>
-    )
+    );
 }
-
 
 function App() {
     return (
@@ -40,17 +40,22 @@ function App() {
 
             <main>
                 <section id="core-concepts">
-                    <h2>Time to get started!</h2>
+                    <h2>Core Concepts</h2>
                     <ul>
                         <CoreConcept
-                            title="Components"
-                            descriptions="The core UI building block."
-                            image={componentsImg}
+                            title={CORE_CONCEPTS[0].title}
+                            description={CORE_CONCEPTS[0].description}
+                            image={CORE_CONCEPTS[0].image}
                         />
-
-                        <CoreConcept title={}/>
-                        <CoreConcept title={}/>
-                        <CoreConcept title={}/>
+                        <CoreConcept
+                            {...CORE_CONCEPTS[1]}
+                        />
+                        <CoreConcept
+                            {...CORE_CONCEPTS[2]}
+                        />
+                        <CoreConcept
+                            {...CORE_CONCEPTS[3]}
+                        />
                     </ul>
                 </section>
             </main>
